@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The phone game, explained like you're 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb; --surface-2: #f3f2ee; --rule: #dddcd6;
+  --ink: #0b0b0b; --ink-2: #52514e; --ink-3: #85837c;
+  --f1: #86b6ef; --f3: #2a78d6; --f5: #104281;
+  --dot: #dcdad3;
+  --critical: #d03b3b; --good: #0a7d0a; --good-bg: #e7f4e7;
+  --wait: #9a6700; --wait-bg: #fbf1dc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface: #1a1a19; --surface-2: #232322; --rule: #3a3a37;
+    --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #8d8c84;
+    --f1: #9ec5f4; --f3: #3987e5; --f5: #184f95;
+    --dot: #3a3a37;
+    --critical: #e66767; --good: #4cc24c; --good-bg: #1f321f;
+    --wait: #e0b04a; --wait-bg: #3a3020;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--surface); }
+body { margin: 0; font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; font-size: 18px; line-height: 1.6; color: var(--ink); background: var(--surface); font-variant-numeric: tabular-nums; }
+main { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+h1 { font-size: 36px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 14px; max-width: 20ch; }
+.lede { font-size: 20px; color: var(--ink-2); margin: 0; max-width: 50ch; }
+.meta { color: var(--ink-3); font-size: 14px; margin: 14px 0 0; }
+h2 { font-size: 26px; font-weight: 600; margin: 72px 0 4px; line-height: 1.2; }
+h2 .ch { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 6px; }
+h3 { font-size: 18px; font-weight: 600; margin: 26px 0 8px; }
+p { margin: 0 0 14px; max-width: 58ch; }
+b { font-weight: 600; }
+
+.big { font-size: 24px; line-height: 1.35; font-weight: 500; border-top: 3px solid var(--ink); padding-top: 18px; margin: 36px 0 0; max-width: 32ch; }
+.story { background: var(--surface-2); border-radius: 10px; padding: 20px 22px; margin: 18px 0; max-width: 62ch; }
+.story p:last-child { margin-bottom: 0; }
+.story .k { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
+.sowhat { border-left: 3px solid var(--f3); padding: 4px 0 4px 16px; margin: 18px 0 0; max-width: 58ch; }
+.sowhat .k { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--f3); font-weight: 600; }
+
+/* 100-dot pictures */
+.dots-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px 40px; margin: 22px 0 6px; }
+.dots-card { min-width: 0; }
+.dots-card .t { font-weight: 600; margin-bottom: 2px; }
+.dots-card .s { color: var(--ink-2); font-size: 15px; margin-bottom: 10px; }
+.dots { display: grid; grid-template-columns: repeat(10, 16px); gap: 5px; }
+.dots i { width: 16px; height: 16px; border-radius: 50%; background: var(--dot); display: block; }
+.dots i.on { background: var(--f3); }
+.dots-card .n { margin-top: 10px; font-size: 16px; }
+.dots-card .n b { font-size: 22px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px 28px; margin: 20px 0 8px; }
+.tile { border-top: 1px solid var(--ink-3); padding-top: 10px; min-width: 0; }
+.tile .v { font-size: 32px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+.tile .v.bad { color: var(--critical); }
+.tile .l { color: var(--ink-2); font-size: 15px; margin-top: 4px; line-height: 1.35; }
+
+.mermaid-wrap { background: var(--surface-2); border-radius: 10px; padding: 16px; margin: 18px 0 10px; overflow-x: auto; }
+.pb-mermaid { display: flex; justify-content: center; min-width: 0; }
+
+.steps { list-style: none; counter-reset: s; margin: 18px 0 0; padding: 0; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 18px 48px; max-width: 60ch; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--rule); display: grid; place-items: center; font-weight: 600; font-size: 15px; color: var(--ink-2); }
+.steps li.now::before { background: var(--f3); color: #fff; border-color: var(--f3); }
+.steps .d { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.steps p { margin: 0; color: var(--ink); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 18px 0 0; }
+.card { background: var(--surface-2); border-radius: 10px; padding: 16px 18px; min-width: 0; }
+.card .no { font-size: 13px; color: var(--ink-3); font-weight: 600; letter-spacing: .06em; }
+.card h3 { margin: 4px 0 8px; font-size: 18px; }
+.card p { font-size: 16px; color: var(--ink-2); margin: 0 0 8px; }
+.card .gain { font-size: 15px; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px; }
+
+.pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.done { background: var(--good-bg); color: var(--good); }
+.pill.wait { background: var(--wait-bg); color: var(--wait); }
+.pill.open { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--rule); }
+
+.grown { margin: 72px 0 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+.grown > summary { cursor: pointer; font-size: 20px; font-weight: 600; padding: 8px 0; }
+.grown > summary span { font-weight: 400; color: var(--ink-3); font-size: 15px; margin-left: 8px; }
+.grown h3 { margin-top: 30px; }
+.grown p { font-size: 16px; color: var(--ink-2); }
+.tbl { width: 100%; border-collapse: collapse; margin: 10px 0 8px; font-size: 15px; }
+.tbl th { text-align: left; font-weight: 600; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding: 6px 10px 6px 0; font-size: 14px; }
+.tbl td { border-bottom: 1px solid var(--rule); padding: 8px 10px 8px 0; vertical-align: top; }
+.tbl td.n, .tbl th.n { text-align: right; white-space: nowrap; }
+.tbl tr.em td { font-weight: 600; }
+
+.foot { margin-top: 56px; border-top: 1px solid var(--rule); padding-top: 16px; color: var(--ink-3); font-size: 14px; }
+.foot p { max-width: 70ch; }
+@media (max-width: 560px) { h1 { font-size: 30px; } .big { font-size: 21px; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>The phone game, explained like you're 5</h1>
+  <p class="lede">What we learned about our sales calls, and what we did about it. 21 to 29 September 2026.</p>
+  <p class="meta">WebScribble sales team. Numbers as of 29 Sep 2026, 2:00 PM ET. We only looked. We did not change anything in Apollo, Trellus or Salesforce.</p>
+</header>
+
+<p class="big">Our salespeople make lots of calls every day. But almost every call reaches a robot, not a person.</p>
+
+<div class="story">
+  <div class="k">Imagine this</div>
+  <p>You want to talk to your friend Sam.</p>
+  <p>Sam has a phone of his own. But the grown-up who gives you phone numbers keeps giving you the number of Sam's whole school.</p>
+  <p>You call the school. A robot says: "Press 1 for the office. Press 2 for the library." Or a busy secretary says: "Sam can't come to the phone."</p>
+  <p>You call again tomorrow. Same robot. You never get Sam.</p>
+  <p><b>That is what happens to our calls.</b></p>
+</div>
+
+<h2><span class="ch">Part 1</span>We mostly call the school, not Sam</h2>
+<p>We counted every call from the last month. Here is what 100 calls look like. Each blue dot is a time we actually talked to the person we wanted.</p>
+
+<div class="dots-row">
+  <div class="dots-card">
+    <div class="t">Calling Sam's own phone</div>
+    <div class="s">his direct line</div>
+    <div class="dots" id="dots-direct" role="img" aria-label="About 5 of 100 calls reach the person"></div>
+    <div class="n"><b>About 5</b> out of 100 find Sam</div>
+  </div>
+  <div class="dots-card">
+    <div class="t">Calling the school's front desk</div>
+    <div class="s">the company's main line, from Apollo</div>
+    <div class="dots" id="dots-main" role="img" aria-label="1 of 100 calls reaches the person"></div>
+    <div class="n"><b>1</b> out of 100 finds Sam</div>
+  </div>
+</div>
+<p>5 out of 100 still sounds small. That's because Sam is often busy and his voicemail answers. But at least it's <b>his</b> voicemail, so he can call back.</p>
+
+<div class="sowhat">
+  <div class="k">So what?</div>
+  <p>4 of every 10 calls we make go to the front desk. That's the phone that almost never works.</p>
+</div>
+
+<h2><span class="ch">Part 2</span>A helper keeps swapping our phone book</h2>
+<p>Apollo is like a helper who looks after our phone book.</p>
+<p>The helper has two rules:</p>
+<div class="story">
+  <p><b>Rule 1.</b> Every time we add someone to our call list, the helper buys a new number for them. Then he writes it over the old one. Even when the old one worked.</p>
+  <p><b>Rule 2.</b> If a call to that new number goes badly, the helper buys <b>another</b> new number.</p>
+  <p>Each new number costs coins (Apollo calls them credits). Nobody checks if the new number actually reaches the person.</p>
+</div>
+<p>So it goes round and round, like a hamster on a wheel:</p>
+
+<div class="mermaid-wrap">
+<pre class="mermaid pb-mermaid">
+flowchart TD
+  A["Sam has a number that works"] --> B["We add Sam to a call list"]
+  B --> C["The helper buys a new number<br/>and writes it over the good one"]
+  C --> D["We call the new number.<br/>A robot answers, or nobody"]
+  D --> E["The call gets marked<br/>'Bad number'"]
+  E --> F["The helper buys<br/>another new number"]
+  F --> D
+</pre>
+</div>
+
+<div class="tiles">
+  <div class="tile"><div class="v bad">75,560</div><div class="l">coins the two rules have spent so far</div></div>
+  <div class="tile"><div class="v">509</div><div class="l">phone numbers swapped in the last 30 days</div></div>
+  <div class="tile"><div class="v">0</div><div class="l">checks that the new number works</div></div>
+</div>
+
+<div class="sowhat">
+  <div class="k">So what?</div>
+  <p>We pay coins to throw away numbers that work and buy numbers that don't.</p>
+</div>
+
+<h2><span class="ch">Part 3</span>So we made a notebook</h2>
+<p>We built a notebook that listens to every sales call.</p>
+<p>For each call it writes down who picked up: <b>a person</b>, <b>a robot</b>, <b>a secretary</b>, or <b>voicemail</b>.</p>
+<p>For each phone number it remembers: "this one works", "this one is a robot", or "we don't know yet".</p>
+<p>It checks for new calls every 20 minutes while the team is working. We tested it by hand, and it was right 97 times out of 100.</p>
+
+<div class="tiles">
+  <div class="tile"><div class="v">4,719</div><div class="l">calls in the notebook</div></div>
+  <div class="tile"><div class="v">2,945</div><div class="l">people we called</div></div>
+  <div class="tile"><div class="v">65</div><div class="l">people whose good number is already in the book, just not first</div></div>
+</div>
+
+<div class="sowhat">
+  <div class="k">So what?</div>
+  <p>Now we can see which numbers work and which don't. And if we fix something, the notebook tells us the next day whether it helped.</p>
+</div>
+
+<h2><span class="ch">Part 4</span>What we did, step by step</h2>
+<ol class="steps">
+  <li><div class="d">21–22 Sep</div><p>We listened to 3,087 calls. Only 1 in 10 reached a real person.</p></li>
+  <li><div class="d">22 Sep</div><p>We tried a small test. For 297 people who only had the front-desk number, we looked for their own number. We found one for 194 of them.</p></li>
+  <li><div class="d">22 Sep</div><p>We met with Alexey and Greg. We agreed to stop calling front desks. And Alexey said: "Don't change anything yet. First understand."</p></li>
+  <li><div class="d">25 Sep</div><p>We looked at the dialer settings. We found the switch that stops calling front desks.</p></li>
+  <li><div class="d">25 Sep</div><p>We built the notebook.</p></li>
+  <li><div class="d">28 Sep</div><p>We found the helper's two rules. They are the ones swapping our numbers.</p></li>
+  <li class="now"><div class="d">29 Sep, today</div><p>The notebook ran all day with no breaks. So far today: 79 calls, no talks with the right person yet, and 22 calls reached a robot or front desk. The helper swapped 22 more numbers, all for people nobody has called yet.</p></li>
+</ol>
+
+<h2><span class="ch">Part 5</span>What we'd like to do next</h2>
+<p>Four small fixes. Each one can be undone. Each one is waiting for a "yes".</p>
+<div class="cards">
+  <div class="card">
+    <div class="no">FIX 1</div>
+    <h3>Stop calling the front desk</h3>
+    <p>Flip one switch for Denise, Jonathan and Winston. Nick keeps calling front desks. His colleges need it, and we agreed on that.</p>
+    <div class="gain">About 1,600 fewer useless calls every month.</div>
+  </div>
+  <div class="card">
+    <div class="no">FIX 2</div>
+    <h3>Put Sam's real number first</h3>
+    <p>For 65 people, the number that worked is already in the book. It's just not at the top.</p>
+    <div class="gain">The notebook checks if it helped.</div>
+  </div>
+  <div class="card">
+    <div class="no">FIX 3</div>
+    <h3>Tell the helper: don't swap a number that works</h3>
+    <p>Whoever owns the helper's rules decides how.</p>
+    <div class="gain">The hamster wheel stops, and we save coins.</div>
+  </div>
+  <div class="card">
+    <div class="no">FIX 4</div>
+    <h3>When a robot answers, write "robot"</h3>
+    <p>Today, a robot answer gets written down as "nobody home". So nobody can tell the two apart.</p>
+    <div class="gain">Everyone can see which numbers are robots.</div>
+  </div>
+</div>
+
+<details class="grown">
+  <summary>For grown-ups: the real numbers <span>click to open</span></summary>
+
+  <h3>How often each kind of number reaches the person</h3>
+  <table class="tbl">
+    <thead><tr><th>Kind of number</th><th class="n">Calls</th><th class="n">Share</th><th class="n">Reached person</th><th class="n">Per 100</th></tr></thead>
+    <tbody>
+      <tr><td>Direct line, entered by us or from Salesforce</td><td class="n">451</td><td class="n">10%</td><td class="n">25</td><td class="n">5.5</td></tr>
+      <tr><td>Direct line or other, bought by Apollo</td><td class="n">599</td><td class="n">13%</td><td class="n">23</td><td class="n">3.8</td></tr>
+      <tr><td>Other number, entered by us or from Salesforce</td><td class="n">1,173</td><td class="n">25%</td><td class="n">37</td><td class="n">3.2</td></tr>
+      <tr><td>Company main line, entered by us or from Salesforce</td><td class="n">394</td><td class="n">8%</td><td class="n">8</td><td class="n">2.0</td></tr>
+      <tr><td>Mobile, bought by Apollo</td><td class="n">98</td><td class="n">2%</td><td class="n">1</td><td class="n">1.0</td></tr>
+      <tr class="em"><td>Company main line, bought by Apollo ("Corporate Phone" in Trellus)</td><td class="n">1,855</td><td class="n">39%</td><td class="n">18</td><td class="n">1.0</td></tr>
+      <tr><td>Typed in by hand, mostly call-backs</td><td class="n">130</td><td class="n">3%</td><td class="n">43</td><td class="n">33.1</td></tr>
+    </tbody>
+  </table>
+  <p>On the Apollo main lines, 1,030 of 1,855 calls hit a menu or a recording and 159 a receptionist: 90% machine or front desk.</p>
+
+  <h3>The two Apollo rules</h3>
+  <table class="tbl">
+    <thead><tr><th>Apollo workflow</th><th>When it runs</th><th class="n">Runs</th><th class="n">Credits</th></tr></thead>
+    <tbody>
+      <tr><td>Phone enrichment if added to the sequence</td><td>a contact is added to any sequence; buys the phone again (8 credits) and writes it into Salesforce about 3 minutes later</td><td class="n">13,146</td><td class="n">45,219</td></tr>
+      <tr><td>Enrich new number {bad phone number stage}</td><td>a contact is moved to the stage "Bad Phone Number"</td><td class="n">10,595</td><td class="n">30,341</td></tr>
+    </tbody>
+  </table>
+  <p>Salesforce shows these writes under Anton's name, because Anton's login connects Apollo to Salesforce. We matched the Apollo log to the Salesforce change history for the same people, three minutes apart. 161 contacts sit in "Bad Phone Number" now; 43 of them already have a number that reached them, only 22 have nothing but bad numbers.</p>
+  <p>A real case (L. H., a current client's contact): her own line led to her own voicemail. On 24 Sep Apollo put a bought number first. It rang out on 25 and 28 Sep, the dialer logged "Bad / Wrong Number", and two minutes later she was moved to "Bad Phone Number", which buys the next number.</p>
+
+  <h3>What the notebook knows about each number</h3>
+  <table class="tbl">
+    <thead><tr><th>Verdict</th><th class="n">Numbers</th></tr></thead>
+    <tbody>
+      <tr><td>Proven: a real conversation happened on it</td><td class="n">328</td></tr>
+      <tr><td>Probably right: the person's own voicemail answers</td><td class="n">586</td></tr>
+      <tr><td>A machine: menu, recording or front desk</td><td class="n">1,753</td></tr>
+      <tr><td>Dead, wrong person, or the person has left</td><td class="n">141</td></tr>
+      <tr><td>Not tested yet</td><td class="n">1,482</td></tr>
+    </tbody>
+  </table>
+  <p>Accuracy, checked by hand on random samples: "menu or recording" right in 97 of 100, "voicemail" right in 49 of 50. Over the month, 8% of calls went to a number the notebook already knew was a machine.</p>
+
+  <h3>What the notebook says to do with each contact</h3>
+  <table class="tbl">
+    <thead><tr><th>Action</th><th class="n">Contacts</th></tr></thead>
+    <tbody>
+      <tr><td>Nothing, the number is fine</td><td class="n">215</td></tr>
+      <tr class="em"><td>Put first the number that already worked</td><td class="n">65</td></tr>
+      <tr><td>Try another number already on the card</td><td class="n">47</td></tr>
+      <tr><td>Needs a new number: nothing on the card reaches a person</td><td class="n">566</td></tr>
+      <tr><td>Find a different person at the company</td><td class="n">7</td></tr>
+      <tr><td>Nick's college list, leave alone (agreed 22 Sep)</td><td class="n">135</td></tr>
+      <tr><td>Not enough calls yet to tell</td><td class="n">1,910</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Fix 1 in detail</h3>
+  <p>Trellus, Phone Number Priority, switch "Corporate - Phone" off for Denise, Jonathan and Winston. Last 30 days for the three: 1,635 calls (36% of their calling), 12 conversations with the contact, 5 of 49 positive outcomes. That is 3 positive outcomes per 1,000 calls on the main line against 15 on every other number. 1,168 of the 1,532 contacts affected have another number on the card.</p>
+
+  <h3>Earlier findings (review of 1–21 Sep, published 22 Sep)</h3>
+  <p>3,087 calls: a person answered 10%; switchboard, menu or dead line 37%; our own dialer hung up 23% before anyone answered. The outcome labels in the CRM are written by the dialer, not by the reps. 29% of numbers marked "Bad / Wrong Number" get called again. On dialer calls Jonathan did not speak in 87 of 92 answered calls, checked against the recordings. Credits test: 297 switchboard contacts, 55% already had a direct or mobile number in Apollo; 520 credits bought numbers for 67 more; 194 of 297 now have a better number.</p>
+
+  <h3>Tasks from the 22 Sep meeting</h3>
+  <table class="tbl">
+    <thead><tr><th>Task</th><th>Where it stands</th></tr></thead>
+    <tbody>
+      <tr><td>Find the setting that stops calls to switchboards</td><td><span class="pill done">Found</span> "Corporate Phone" per rep (fix 1); menus can get their own label (fix 4)</td></tr>
+      <tr><td>Protect numbers the reps fixed from being overwritten</td><td><span class="pill done">Cause found</span> two Apollo rules, not the sync; needs the rule owner (fix 3)</td></tr>
+      <tr><td>Refresh numbers once a quarter</td><td><span class="pill wait">List ready</span> 566 contacts need a new number; the notebook keeps the list current</td></tr>
+      <tr><td>Anton goes through the dialer as a rep, start to finish</td><td><span class="pill open">Open</span></td></tr>
+      <tr><td>Second half of the credits test: reps call the 194 new numbers for two weeks</td><td><span class="pill open">Not started</span> needs the reps</td></tr>
+    </tbody>
+  </table>
+</details>
+
+<div class="foot">
+  <p>Sources: Trellus call recordings and transcripts, Apollo contact cards and workflow logs, Salesforce phone change history. Read-only. Times are US Eastern.</p>
+</div>
+
+</main>
+
+<script>
+  function fillDots(id, on) {
+    const el = document.getElementById(id);
+    for (let i = 0; i < 100; i++) {
+      const d = document.createElement("i");
+      if (i < on) d.className = "on";
+      el.appendChild(d);
+    }
+  }
+  fillDots("dots-direct", 5);
+  fillDots("dots-main", 1);
+</script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.esm.min.mjs";
+  const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const paint = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+  function toRgba(color) {
+    paint.clearRect(0, 0, 1, 1);
+    paint.fillStyle = "#000";
+    paint.fillStyle = color;
+    paint.fillRect(0, 0, 1, 1);
+    return paint.getImageData(0, 0, 1, 1).data;
+  }
+  function compositeRgba(f, b) {
+    const fa = f[3] / 255, ba = b[3] / 255, a = fa + ba * (1 - fa);
+    if (a === 0) return [0, 0, 0, 0];
+    return [(f[0] * fa + b[0] * ba * (1 - fa)) / a, (f[1] * fa + b[1] * ba * (1 - fa)) / a, (f[2] * fa + b[2] * ba * (1 - fa)) / a, a * 255];
+  }
+  function pageIsDark() {
+    const rootBg = toRgba(getComputedStyle(document.documentElement).backgroundColor);
+    const bodyBg = document.body ? toRgba(getComputedStyle(document.body).backgroundColor) : [0, 0, 0, 0];
+    const [r, g, b, a] = compositeRgba(bodyBg, rootBg);
+    if (a > 0) return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 < 0.5;
+    return darkQuery.matches;
+  }
+  const diagrams = [...document.querySelectorAll(".mermaid")].map((el) => ({ el, src: el.innerHTML }));
+  let applied, rendering = false, queued = false;
+  function queueRender() { queued = true; if (rendering) return; void render(); }
+  async function render() {
+    rendering = true;
+    try {
+      while (queued) {
+        queued = false;
+        const theme = pageIsDark() ? "dark" : "default";
+        if (theme === applied) continue;
+        mermaid.initialize({ startOnLoad: false, theme, securityLevel: "strict", fontFamily: "IBM Plex Sans, Segoe UI, sans-serif" });
+        for (const { el, src } of diagrams) { el.removeAttribute("data-processed"); el.innerHTML = src; }
+        try { await mermaid.run({ nodes: diagrams.map((d) => d.el) }); }
+        catch (error) { console.error("Mermaid diagram render failed:", error); return; }
+        applied = theme;
+      }
+    } finally {
+      rendering = false;
+      if (queued) queueRender();
+    }
+  }
+  if (document.readyState === "complete") queueRender();
+  else window.addEventListener("load", queueRender, { once: true });
+  const obs = new MutationObserver(queueRender);
+  for (const el of [document.documentElement, document.body]) {
+    if (el) obs.observe(el, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
+  }
+  darkQuery.addEventListener("change", queueRender);
+</script>
+</body>
+</html>
