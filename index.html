@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>The phone game, explained like you're 5</title>
+<title>Phone data: what we did after 22 September</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,8 +13,7 @@
   color-scheme: light;
   --surface: #fcfcfb; --surface-2: #f3f2ee; --rule: #dddcd6;
   --ink: #0b0b0b; --ink-2: #52514e; --ink-3: #85837c;
-  --f1: #86b6ef; --f3: #2a78d6; --f5: #104281;
-  --dot: #dcdad3;
+  --f3: #2a78d6;
   --critical: #d03b3b; --good: #0a7d0a; --good-bg: #e7f4e7;
   --wait: #9a6700; --wait-bg: #fbf1dc;
 }
@@ -23,225 +22,250 @@
     color-scheme: dark;
     --surface: #1a1a19; --surface-2: #232322; --rule: #3a3a37;
     --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #8d8c84;
-    --f1: #9ec5f4; --f3: #3987e5; --f5: #184f95;
-    --dot: #3a3a37;
+    --f3: #3987e5;
     --critical: #e66767; --good: #4cc24c; --good-bg: #1f321f;
     --wait: #e0b04a; --wait-bg: #3a3020;
   }
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { background: var(--surface); }
-body { margin: 0; font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; font-size: 18px; line-height: 1.6; color: var(--ink); background: var(--surface); font-variant-numeric: tabular-nums; }
-main { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
-h1 { font-size: 36px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 14px; max-width: 20ch; }
-.lede { font-size: 20px; color: var(--ink-2); margin: 0; max-width: 50ch; }
+body { margin: 0; font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--surface); font-variant-numeric: tabular-nums; }
+main { max-width: 800px; margin: 0 auto; padding: 56px 24px 80px; }
+h1 { font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 14px; max-width: 22ch; }
+.lede { font-size: 19px; color: var(--ink-2); margin: 0; max-width: 56ch; }
 .meta { color: var(--ink-3); font-size: 14px; margin: 14px 0 0; }
-h2 { font-size: 26px; font-weight: 600; margin: 72px 0 4px; line-height: 1.2; }
+h2 { font-size: 25px; font-weight: 600; margin: 68px 0 6px; line-height: 1.2; }
 h2 .ch { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 6px; }
-h3 { font-size: 18px; font-weight: 600; margin: 26px 0 8px; }
-p { margin: 0 0 14px; max-width: 58ch; }
+h2 + .sub { color: var(--ink-2); margin: 0 0 18px; max-width: 60ch; }
+h3 { font-size: 18px; font-weight: 600; margin: 28px 0 8px; }
+p { margin: 0 0 14px; max-width: 62ch; }
 b { font-weight: 600; }
+ul.plain { margin: 8px 0 14px; padding-left: 22px; max-width: 62ch; }
+ul.plain li { margin-bottom: 6px; }
 
-.big { font-size: 24px; line-height: 1.35; font-weight: 500; border-top: 3px solid var(--ink); padding-top: 18px; margin: 36px 0 0; max-width: 32ch; }
-.story { background: var(--surface-2); border-radius: 10px; padding: 20px 22px; margin: 18px 0; max-width: 62ch; }
-.story p:last-child { margin-bottom: 0; }
-.story .k { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
-.sowhat { border-left: 3px solid var(--f3); padding: 4px 0 4px 16px; margin: 18px 0 0; max-width: 58ch; }
-.sowhat .k { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--f3); font-weight: 600; }
+.short { border-top: 3px solid var(--ink); padding-top: 18px; margin-top: 32px; }
+.short ol { margin: 0; padding-left: 24px; }
+.short li { margin: 0 0 12px; max-width: 62ch; padding-left: 4px; }
+.short li::marker { color: var(--ink-3); font-weight: 600; }
 
-/* 100-dot pictures */
-.dots-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px 40px; margin: 22px 0 6px; }
-.dots-card { min-width: 0; }
-.dots-card .t { font-weight: 600; margin-bottom: 2px; }
-.dots-card .s { color: var(--ink-2); font-size: 15px; margin-bottom: 10px; }
-.dots { display: grid; grid-template-columns: repeat(10, 16px); gap: 5px; }
-.dots i { width: 16px; height: 16px; border-radius: 50%; background: var(--dot); display: block; }
-.dots i.on { background: var(--f3); }
-.dots-card .n { margin-top: 10px; font-size: 16px; }
-.dots-card .n b { font-size: 22px; }
+.box { background: var(--surface-2); border-radius: 10px; padding: 18px 20px; margin: 18px 0; max-width: 66ch; }
+.box p:last-child, .box ul:last-child { margin-bottom: 0; }
+.box .k { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
 
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px 28px; margin: 20px 0 8px; }
 .tile { border-top: 1px solid var(--ink-3); padding-top: 10px; min-width: 0; }
-.tile .v { font-size: 32px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+.tile .v { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
 .tile .v.bad { color: var(--critical); }
 .tile .l { color: var(--ink-2); font-size: 15px; margin-top: 4px; line-height: 1.35; }
 
-.mermaid-wrap { background: var(--surface-2); border-radius: 10px; padding: 16px; margin: 18px 0 10px; overflow-x: auto; }
-.pb-mermaid { display: flex; justify-content: center; min-width: 0; }
-
-.steps { list-style: none; counter-reset: s; margin: 18px 0 0; padding: 0; }
-.steps li { counter-increment: s; position: relative; padding: 0 0 18px 48px; max-width: 60ch; }
-.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--rule); display: grid; place-items: center; font-weight: 600; font-size: 15px; color: var(--ink-2); }
-.steps li.now::before { background: var(--f3); color: #fff; border-color: var(--f3); }
-.steps .d { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
-.steps p { margin: 0; color: var(--ink); }
-
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 18px 0 0; }
-.card { background: var(--surface-2); border-radius: 10px; padding: 16px 18px; min-width: 0; }
-.card .no { font-size: 13px; color: var(--ink-3); font-weight: 600; letter-spacing: .06em; }
-.card h3 { margin: 4px 0 8px; font-size: 18px; }
-.card p { font-size: 16px; color: var(--ink-2); margin: 0 0 8px; }
-.card .gain { font-size: 15px; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 8px; }
-
-.pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tbl { width: 100%; border-collapse: collapse; margin: 10px 0 8px; font-size: 15.5px; }
+.tbl th { text-align: left; font-weight: 600; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding: 6px 12px 6px 0; font-size: 14px; }
+.tbl td { border-bottom: 1px solid var(--rule); padding: 10px 12px 10px 0; vertical-align: top; }
+.tbl td.n, .tbl th.n { text-align: right; white-space: nowrap; }
+.tbl td:first-child { width: 42%; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; margin-bottom: 4px; }
 .pill.done { background: var(--good-bg); color: var(--good); }
 .pill.wait { background: var(--wait-bg); color: var(--wait); }
 .pill.open { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--rule); }
 
-.grown { margin: 72px 0 0; border-top: 1px solid var(--rule); padding-top: 12px; }
-.grown > summary { cursor: pointer; font-size: 20px; font-weight: 600; padding: 8px 0; }
-.grown > summary span { font-weight: 400; color: var(--ink-3); font-size: 15px; margin-left: 8px; }
-.grown h3 { margin-top: 30px; }
-.grown p { font-size: 16px; color: var(--ink-2); }
-.tbl { width: 100%; border-collapse: collapse; margin: 10px 0 8px; font-size: 15px; }
-.tbl th { text-align: left; font-weight: 600; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding: 6px 10px 6px 0; font-size: 14px; }
-.tbl td { border-bottom: 1px solid var(--rule); padding: 8px 10px 8px 0; vertical-align: top; }
-.tbl td.n, .tbl th.n { text-align: right; white-space: nowrap; }
-.tbl tr.em td { font-weight: 600; }
+.mermaid-wrap { background: var(--surface-2); border-radius: 10px; padding: 16px; margin: 18px 0 10px; overflow-x: auto; }
+.pb-mermaid { display: flex; justify-content: center; min-width: 0; }
+
+.find { border-left: 3px solid var(--f3); padding: 2px 0 2px 16px; margin: 22px 0; max-width: 64ch; }
+.find .t { font-weight: 600; margin-bottom: 4px; }
+.find p { margin: 0 0 8px; color: var(--ink-2); }
+.find p:last-child { margin-bottom: 0; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 18px 0 0; }
+.card { background: var(--surface-2); border-radius: 10px; padding: 16px 18px; min-width: 0; }
+.card .no { font-size: 13px; color: var(--ink-3); font-weight: 600; letter-spacing: .06em; }
+.card h3 { margin: 4px 0 10px; font-size: 18px; }
+.card dl { margin: 0; font-size: 15.5px; }
+.card dt { color: var(--ink-3); font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-top: 8px; }
+.card dd { margin: 2px 0 0; color: var(--ink); }
+
+.steps { list-style: none; counter-reset: s; margin: 18px 0 0; padding: 0; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 18px 48px; max-width: 64ch; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--rule); display: grid; place-items: center; font-weight: 600; font-size: 15px; color: var(--ink-2); }
+.steps .t { font-weight: 600; }
+.steps p { margin: 2px 0 0; color: var(--ink-2); }
+.steps .who { font-size: 13px; color: var(--ink-3); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+
+details.more { margin: 64px 0 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+details.more > summary { cursor: pointer; font-size: 19px; font-weight: 600; padding: 8px 0; }
+details.more > summary span { font-weight: 400; color: var(--ink-3); font-size: 15px; margin-left: 8px; }
+details.more p { font-size: 16px; color: var(--ink-2); }
 
 .foot { margin-top: 56px; border-top: 1px solid var(--rule); padding-top: 16px; color: var(--ink-3); font-size: 14px; }
 .foot p { max-width: 70ch; }
-@media (max-width: 560px) { h1 { font-size: 30px; } .big { font-size: 21px; } }
+@media (max-width: 560px) { h1 { font-size: 28px; } .tbl td:first-child { width: auto; } }
 </style>
 </head>
 <body>
 <main>
 
 <header>
-  <h1>The phone game, explained like you're 5</h1>
-  <p class="lede">What we learned about our sales calls, and what we did about it. 21 to 29 September 2026.</p>
-  <p class="meta">WebScribble sales team. Numbers as of 29 Sep 2026, 2:00 PM ET. We only looked. We did not change anything in Apollo, Trellus or Salesforce.</p>
+  <h1>Phone data: what we did after 22 September</h1>
+  <p class="lede">A simple report for Alexey. What we built after our two calls on 22 Sep, what it has shown us, which fixes are ready, and what comes next.</p>
+  <p class="meta">Status on Tuesday 29 Sep 2026, 2:40 PM ET. Prepared by Anton.</p>
 </header>
 
-<p class="big">Our salespeople make lots of calls every day. But almost every call reaches a robot, not a person.</p>
+<section class="short" aria-label="In one minute">
+  <ol>
+    <li><b>We built the "source of truth" we talked about.</b> It is our own record of every sales call and every phone number. It has been running since 25 Sep and refreshes every 20 minutes.</li>
+    <li><b>It only reads.</b> As you asked, we changed nothing in Apollo, Trellus or Salesforce. No fix is switched on yet.</li>
+    <li><b>We found what overwrites the numbers.</b> It is not the Salesforce sync. It is two automatic workflows inside Apollo. That changes how we fix it.</li>
+    <li><b>We found the switches for what we agreed with Greg.</b> Stopping calls to company main lines is one switch per rep in Trellus.</li>
+    <li><b>Four fixes are ready.</b> Each is small and can be undone. The record will show the effect the next day. They wait for your yes.</li>
+  </ol>
+</section>
 
-<div class="story">
-  <div class="k">Imagine this</div>
-  <p>You want to talk to your friend Sam.</p>
-  <p>Sam has a phone of his own. But the grown-up who gives you phone numbers keeps giving you the number of Sam's whole school.</p>
-  <p>You call the school. A robot says: "Press 1 for the office. Press 2 for the library." Or a busy secretary says: "Sam can't come to the phone."</p>
-  <p>You call again tomorrow. Same robot. You never get Sam.</p>
-  <p><b>That is what happens to our calls.</b></p>
-</div>
+<h2><span class="ch">Part 1</span>What we agreed on 22 Sep, and where each item is</h2>
+<p class="sub">From both calls: the morning call with you, and the call with you and Greg.</p>
+<table class="tbl">
+  <thead><tr><th>What we agreed</th><th>Where it is now</th></tr></thead>
+  <tbody>
+    <tr><td>Anton designs the phone-data setup first (source of truth, sync risks), before building anything that writes</td><td><span class="pill done">Built, read-only</span><br>The record runs. Nothing writes back to Apollo or Salesforce. Part 2 explains how it works.</td></tr>
+    <tr><td>Find the setting that stops calls to switchboards for Denise, Jonathan and Winston (Nick keeps his)</td><td><span class="pill done">Found</span><br>Trellus, per rep: switch off "Corporate Phone". That is exactly Apollo's company main line. Not switched yet. Fix 1.</td></tr>
+    <tr><td>Stop the sync from overwriting a number a rep fixed</td><td><span class="pill done">Cause found</span><br>The sync is not the problem: in Apollo, "overwrite" is off for all phone fields. Two Apollo workflows do the overwriting. Fix 3.</td></tr>
+    <tr><td>Never replace a number without proof (a recording) that it is bad</td><td><span class="pill done">Built in</span><br>Every grade in the record comes from a real call recording.</td></tr>
+    <tr><td>Refresh numbers once a quarter, not by the reps</td><td><span class="pill wait">List ready</span><br>The record keeps the list: 573 contacts have no number that reaches a person.</td></tr>
+    <tr><td>Greg: how many tries before we give up on a number</td><td><span class="pill open">Waiting for Greg</span><br>Once he sets it, the record can apply the rule by itself.</td></tr>
+    <tr><td>Anton goes through the dialer as a rep, start to finish</td><td><span class="pill open">Open</span></td></tr>
+    <tr><td>Change the dialer / Apollo seats</td><td><span class="pill open">Postponed, as agreed</span><br>Decide at the Apollo renewal.</td></tr>
+  </tbody>
+</table>
 
-<h2><span class="ch">Part 1</span>We mostly call the school, not Sam</h2>
-<p>We counted every call from the last month. Here is what 100 calls look like. Each blue dot is a time we actually talked to the person we wanted.</p>
-
-<div class="dots-row">
-  <div class="dots-card">
-    <div class="t">Calling Sam's own phone</div>
-    <div class="s">his direct line</div>
-    <div class="dots" id="dots-direct" role="img" aria-label="About 5 of 100 calls reach the person"></div>
-    <div class="n"><b>About 5</b> out of 100 find Sam</div>
-  </div>
-  <div class="dots-card">
-    <div class="t">Calling the school's front desk</div>
-    <div class="s">the company's main line, from Apollo</div>
-    <div class="dots" id="dots-main" role="img" aria-label="1 of 100 calls reaches the person"></div>
-    <div class="n"><b>1</b> out of 100 finds Sam</div>
-  </div>
-</div>
-<p>5 out of 100 still sounds small. That's because Sam is often busy and his voicemail answers. But at least it's <b>his</b> voicemail, so he can call back.</p>
-
-<div class="sowhat">
-  <div class="k">So what?</div>
-  <p>4 of every 10 calls we make go to the front desk. That's the phone that almost never works.</p>
-</div>
-
-<h2><span class="ch">Part 2</span>A helper keeps swapping our phone book</h2>
-<p>Apollo is like a helper who looks after our phone book.</p>
-<p>The helper has two rules:</p>
-<div class="story">
-  <p><b>Rule 1.</b> Every time we add someone to our call list, the helper buys a new number for them. Then he writes it over the old one. Even when the old one worked.</p>
-  <p><b>Rule 2.</b> If a call to that new number goes badly, the helper buys <b>another</b> new number.</p>
-  <p>Each new number costs coins (Apollo calls them credits). Nobody checks if the new number actually reaches the person.</p>
-</div>
-<p>So it goes round and round, like a hamster on a wheel:</p>
+<h2><span class="ch">Part 2</span>How the record works</h2>
+<p class="sub">Think of it as a logbook next to the phone. After every call, someone writes down who picked up and puts a mark next to that number.</p>
+<p>Here is what happens every 20 minutes, while the US team is calling:</p>
 
 <div class="mermaid-wrap">
 <pre class="mermaid pb-mermaid">
 flowchart TD
-  A["Sam has a number that works"] --> B["We add Sam to a call list"]
-  B --> C["The helper buys a new number<br/>and writes it over the good one"]
-  C --> D["We call the new number.<br/>A robot answers, or nobody"]
-  D --> E["The call gets marked<br/>'Bad number'"]
-  E --> F["The helper buys<br/>another new number"]
-  F --> D
+  A["Take the new calls from Trellus,<br/>with their transcripts"] --> B["Read each call:<br/>who answered?"]
+  B --> C["Give the number a grade:<br/>proven / own voicemail / machine / dead / not tested"]
+  C --> D["Look at the Apollo card<br/>and the Salesforce phone history:<br/>did the number change, and who changed it?"]
+  D --> E["Update the fix list<br/>and the morning report"]
 </pre>
 </div>
 
-<div class="tiles">
-  <div class="tile"><div class="v bad">75,560</div><div class="l">coins the two rules have spent so far</div></div>
-  <div class="tile"><div class="v">509</div><div class="l">phone numbers swapped in the last 30 days</div></div>
-  <div class="tile"><div class="v">0</div><div class="l">checks that the new number works</div></div>
+<div class="box">
+  <div class="k">Why it is safe against the sync problem</div>
+  <ul class="plain">
+    <li>It keeps its own copy. No sync, Apollo rule or rep can overwrite it.</li>
+    <li>It only reads. Right now it cannot make anything worse.</li>
+    <li>A grade needs a real recording as proof, which is the rule we agreed on 22 Sep.</li>
+    <li>Every day it reports each phone change in Salesforce: who made it, and whether the next call on the new number reached a person. This is the "who overwrote it" report Greg asked for.</li>
+  </ul>
 </div>
 
-<div class="sowhat">
-  <div class="k">So what?</div>
-  <p>We pay coins to throw away numbers that work and buy numbers that don't.</p>
-</div>
-
-<h2><span class="ch">Part 3</span>So we made a notebook</h2>
-<p>We built a notebook that listens to every sales call.</p>
-<p>For each call it writes down who picked up: <b>a person</b>, <b>a robot</b>, <b>a secretary</b>, or <b>voicemail</b>.</p>
-<p>For each phone number it remembers: "this one works", "this one is a robot", or "we don't know yet".</p>
-<p>It checks for new calls every 20 minutes while the team is working. We tested it by hand, and it was right 97 times out of 100.</p>
+<h3>How we checked that it reads calls correctly</h3>
+<p>We compared it with 3,087 calls that were read one by one: it agrees on 91% of them. Then we checked random samples by hand: 97 of 100 "menu or recording" calls were right, and 49 of 50 "voicemail" calls. About 380 calls the rules could not place were read one by one.</p>
 
 <div class="tiles">
-  <div class="tile"><div class="v">4,719</div><div class="l">calls in the notebook</div></div>
-  <div class="tile"><div class="v">2,945</div><div class="l">people we called</div></div>
-  <div class="tile"><div class="v">65</div><div class="l">people whose good number is already in the book, just not first</div></div>
+  <div class="tile"><div class="v">4,768</div><div class="l">calls in the record (since 26 Aug)</div></div>
+  <div class="tile"><div class="v">2,970</div><div class="l">contacts, with a grade for every number</div></div>
+  <div class="tile"><div class="v">50</div><div class="l">automatic runs since 25 Sep, no data lost</div></div>
 </div>
 
-<div class="sowhat">
-  <div class="k">So what?</div>
-  <p>Now we can see which numbers work and which don't. And if we fix something, the notebook tells us the next day whether it helped.</p>
+<h2><span class="ch">Part 3</span>What the record has shown us so far</h2>
+
+<div class="find">
+  <div class="t">1. Two Apollo workflows rewrite our phone numbers</div>
+  <p>"Phone enrichment if added to the sequence": when a rep adds a contact to any sequence, Apollo buys a phone number again and writes it into the Salesforce Phone field about 3 minutes later. 13,146 runs, 45,219 credits so far.</p>
+  <p>"Enrich new number {bad phone number stage}": when a contact is moved to "Bad Phone Number", Apollo buys another number. 10,595 runs, 30,341 credits so far.</p>
+  <p>509 phone numbers in Salesforce were rewritten this way in the last 30 days. It usually happens before the first call. Neither workflow checks that the new number reaches a person. Salesforce shows these changes under Anton's name, because Anton's login connects Apollo to Salesforce.</p>
 </div>
 
-<h2><span class="ch">Part 4</span>What we did, step by step</h2>
-<ol class="steps">
-  <li><div class="d">21–22 Sep</div><p>We listened to 3,087 calls. Only 1 in 10 reached a real person.</p></li>
-  <li><div class="d">22 Sep</div><p>We tried a small test. For 297 people who only had the front-desk number, we looked for their own number. We found one for 194 of them.</p></li>
-  <li><div class="d">22 Sep</div><p>We met with Alexey and Greg. We agreed to stop calling front desks. And Alexey said: "Don't change anything yet. First understand."</p></li>
-  <li><div class="d">25 Sep</div><p>We looked at the dialer settings. We found the switch that stops calling front desks.</p></li>
-  <li><div class="d">25 Sep</div><p>We built the notebook.</p></li>
-  <li><div class="d">28 Sep</div><p>We found the helper's two rules. They are the ones swapping our numbers.</p></li>
-  <li class="now"><div class="d">29 Sep, today</div><p>The notebook ran all day with no breaks. So far today: 79 calls, no talks with the right person yet, and 22 calls reached a robot or front desk. The helper swapped 22 more numbers, all for people nobody has called yet.</p></li>
-</ol>
+<div class="find">
+  <div class="t">2. Together they make a loop</div>
+  <p>A working number gets replaced by a bought one. The bought one doesn't answer. The dialer logs "Bad / Wrong Number", the contact goes to "Bad Phone Number", and Apollo buys yet another number.</p>
+  <p>161 contacts are in "Bad Phone Number" now. For 43 of them, a number on the card has already reached them. Only 22 really have nothing that works.</p>
+</div>
 
-<h2><span class="ch">Part 5</span>What we'd like to do next</h2>
-<p>Four small fixes. Each one can be undone. Each one is waiting for a "yes".</p>
+<div class="find">
+  <div class="t">3. The company main lines are the biggest waste</div>
+  <p>39% of all calls go to a company main line that Apollo bought. On those, we reached the person 18 times in 1,855 calls. By rep: Denise 47% of her calls, Jonathan 36%, Winston 26%.</p>
+</div>
+
+<div class="find">
+  <div class="t">4. We still call numbers we already know are machines</div>
+  <p>8% of calls this month went to a number that had already answered with a machine. The morning report counts this every day, per rep. The goal is zero.</p>
+</div>
+
+<div class="box">
+  <div class="k">Two corrections to what we said on 22 Sep</div>
+  <ul class="plain">
+    <li><b>The overwrites are not the Salesforce sync.</b> It is the two Apollo workflows above.</li>
+    <li><b>Winston does not mark bad numbers by hand.</b> His dialer account marks every unanswered call as "Bad / Wrong Number" automatically, including calls our own dialer hung up. So those marks are not a reliable signal.</li>
+  </ul>
+</div>
+
+<h2><span class="ch">Part 4</span>Fixes: applied and ready</h2>
+<p class="sub"><b>Applied in Apollo, Trellus or Salesforce: none.</b> That was the agreement. On our side, the record is built and running. The four fixes below are ready to switch on.</p>
+
 <div class="cards">
   <div class="card">
-    <div class="no">FIX 1</div>
-    <h3>Stop calling the front desk</h3>
-    <p>Flip one switch for Denise, Jonathan and Winston. Nick keeps calling front desks. His colleges need it, and we agreed on that.</p>
-    <div class="gain">About 1,600 fewer useless calls every month.</div>
+    <div class="no">FIX 1 · ONE SWITCH PER REP</div>
+    <h3>Stop calling Apollo's company main lines</h3>
+    <dl>
+      <dt>What changes</dt><dd>Trellus: "Corporate Phone" off for Denise, Jonathan and Winston. Nick keeps it.</dd>
+      <dt>Effect</dt><dd>About 1,600 fewer wasted calls a month (36% of their calls). We lose about 5 of 49 good outcomes. 1,168 of the 1,532 contacts affected still have another number.</dd>
+      <dt>How we'll know</dt><dd>The next morning's report.</dd>
+    </dl>
   </div>
   <div class="card">
-    <div class="no">FIX 2</div>
-    <h3>Put Sam's real number first</h3>
-    <p>For 65 people, the number that worked is already in the book. It's just not at the top.</p>
-    <div class="gain">The notebook checks if it helped.</div>
+    <div class="no">FIX 2 · 65 CONTACTS</div>
+    <h3>Put the proven number first</h3>
+    <dl>
+      <dt>What changes</dt><dd>For 65 contacts, the number that already led to a conversation becomes the default in Apollo.</dd>
+      <dt>Why it works</dt><dd>The dialer calls the default number first in 68% of cases.</dd>
+      <dt>How we'll know</dt><dd>The record checks their next calls.</dd>
+    </dl>
   </div>
   <div class="card">
-    <div class="no">FIX 3</div>
-    <h3>Tell the helper: don't swap a number that works</h3>
-    <p>Whoever owns the helper's rules decides how.</p>
-    <div class="gain">The hamster wheel stops, and we save coins.</div>
+    <div class="no">FIX 3 · NEEDS THE WORKFLOW OWNER</div>
+    <h3>Stop Apollo replacing a number that works</h3>
+    <dl>
+      <dt>What changes</dt><dd>For example: skip contacts whose number is proven, or stop the workflows from writing into the Salesforce Phone field.</dd>
+      <dt>Effect</dt><dd>Ends the loop and saves credits.</dd>
+      <dt>How we'll know</dt><dd>The daily "who changed the phone" report goes quiet.</dd>
+    </dl>
   </div>
   <div class="card">
-    <div class="no">FIX 4</div>
-    <h3>When a robot answers, write "robot"</h3>
-    <p>Today, a robot answer gets written down as "nobody home". So nobody can tell the two apart.</p>
-    <div class="gain">Everyone can see which numbers are robots.</div>
+    <div class="no">FIX 4 · ONE SETTING</div>
+    <h3>Log phone menus as "phone menu"</h3>
+    <dl>
+      <dt>What changes</dt><dd>Trellus, "What to Log": give "Phone Menu" its own outcome. Today it is logged as "No Answer".</dd>
+      <dt>Effect</dt><dd>The CRM itself shows which numbers are machines.</dd>
+      <dt>How we'll know</dt><dd>Menu outcomes appear in Salesforce.</dd>
+    </dl>
   </div>
 </div>
 
-<details class="grown">
-  <summary>For grown-ups: the real numbers <span>click to open</span></summary>
+<h2><span class="ch">Part 5</span>What comes next</h2>
+<ol class="steps">
+  <li><div class="who">Needs: your yes</div><div class="t">Switch on fixes 1 and 4</div><p>Two settings in Trellus. Each can be undone in a minute. We watch the record for a week.</p></li>
+  <li><div class="who">Needs: your yes</div><div class="t">Fix 2 for the 65 contacts</div><p>Set the proven number first, then check their next calls.</p></li>
+  <li><div class="who">Needs: the workflow owner</div><div class="t">Fix 3</div><p>Agree one rule: never replace a number that the record has proven.</p></li>
+  <li><div class="who">Needs: Greg</div><div class="t">The retry rule</div><p>How many tries before we drop a number. The record then applies it automatically.</p></li>
+  <li><div class="who">Needs: a budget yes</div><div class="t">First quarterly refresh</div><p>Buy numbers for the 573 contacts with nothing that works. About 8 credits each, roughly 4,600 credits.</p></li>
+  <li><div class="who">Needs: the reps</div><div class="t">Finish the credits test from 22 Sep</div><p>Two weeks of calls to the 194 new numbers from the test, compared with the old ones.</p></li>
+  <li><div class="who">Anton</div><div class="t">Dial as a rep, start to finish</div><p>Still open from 22 Sep.</p></li>
+</ol>
 
-  <h3>How often each kind of number reaches the person</h3>
+<h2><span class="ch">Today</span>29 Sep, up to 2:40 PM ET</h2>
+<div class="tiles">
+  <div class="tile"><div class="v">128</div><div class="l">calls (Denise 85, Jonathan 43, Winston 0)</div></div>
+  <div class="tile"><div class="v">2</div><div class="l">conversations with the right person</div></div>
+  <div class="tile"><div class="v bad">12</div><div class="l">calls to numbers we already knew were machines (Denise 9, Jonathan 3)</div></div>
+  <div class="tile"><div class="v">22</div><div class="l">phones rewritten by Apollo in Salesforce, all for contacts not called yet</div></div>
+</div>
+
+<details class="more">
+  <summary>The numbers behind this <span>click to open</span></summary>
+  <h3>Which numbers reach the person (26 Aug to 29 Sep)</h3>
   <table class="tbl">
     <thead><tr><th>Kind of number</th><th class="n">Calls</th><th class="n">Share</th><th class="n">Reached person</th><th class="n">Per 100</th></tr></thead>
     <tbody>
@@ -250,87 +274,42 @@ flowchart TD
       <tr><td>Other number, entered by us or from Salesforce</td><td class="n">1,173</td><td class="n">25%</td><td class="n">37</td><td class="n">3.2</td></tr>
       <tr><td>Company main line, entered by us or from Salesforce</td><td class="n">394</td><td class="n">8%</td><td class="n">8</td><td class="n">2.0</td></tr>
       <tr><td>Mobile, bought by Apollo</td><td class="n">98</td><td class="n">2%</td><td class="n">1</td><td class="n">1.0</td></tr>
-      <tr class="em"><td>Company main line, bought by Apollo ("Corporate Phone" in Trellus)</td><td class="n">1,855</td><td class="n">39%</td><td class="n">18</td><td class="n">1.0</td></tr>
+      <tr><td><b>Company main line, bought by Apollo</b></td><td class="n">1,855</td><td class="n">39%</td><td class="n">18</td><td class="n">1.0</td></tr>
       <tr><td>Typed in by hand, mostly call-backs</td><td class="n">130</td><td class="n">3%</td><td class="n">43</td><td class="n">33.1</td></tr>
     </tbody>
   </table>
-  <p>On the Apollo main lines, 1,030 of 1,855 calls hit a menu or a recording and 159 a receptionist: 90% machine or front desk.</p>
-
-  <h3>The two Apollo rules</h3>
+  <h3>Grades of all numbers</h3>
   <table class="tbl">
-    <thead><tr><th>Apollo workflow</th><th>When it runs</th><th class="n">Runs</th><th class="n">Credits</th></tr></thead>
+    <thead><tr><th>Grade</th><th class="n">Numbers</th></tr></thead>
     <tbody>
-      <tr><td>Phone enrichment if added to the sequence</td><td>a contact is added to any sequence; buys the phone again (8 credits) and writes it into Salesforce about 3 minutes later</td><td class="n">13,146</td><td class="n">45,219</td></tr>
-      <tr><td>Enrich new number {bad phone number stage}</td><td>a contact is moved to the stage "Bad Phone Number"</td><td class="n">10,595</td><td class="n">30,341</td></tr>
+      <tr><td>Proven: a real conversation happened on it</td><td class="n">332</td></tr>
+      <tr><td>Own voicemail: the right number, the person didn't pick up</td><td class="n">589</td></tr>
+      <tr><td>Machine: menu, recording or front desk</td><td class="n">1,769</td></tr>
+      <tr><td>Dead, wrong person, or the person has left</td><td class="n">144</td></tr>
+      <tr><td>Not tested yet</td><td class="n">1,497</td></tr>
     </tbody>
   </table>
-  <p>Salesforce shows these writes under Anton's name, because Anton's login connects Apollo to Salesforce. We matched the Apollo log to the Salesforce change history for the same people, three minutes apart. 161 contacts sit in "Bad Phone Number" now; 43 of them already have a number that reached them, only 22 have nothing but bad numbers.</p>
-  <p>A real case (L. H., a current client's contact): her own line led to her own voicemail. On 24 Sep Apollo put a bought number first. It rang out on 25 and 28 Sep, the dialer logged "Bad / Wrong Number", and two minutes later she was moved to "Bad Phone Number", which buys the next number.</p>
-
-  <h3>What the notebook knows about each number</h3>
-  <table class="tbl">
-    <thead><tr><th>Verdict</th><th class="n">Numbers</th></tr></thead>
-    <tbody>
-      <tr><td>Proven: a real conversation happened on it</td><td class="n">328</td></tr>
-      <tr><td>Probably right: the person's own voicemail answers</td><td class="n">586</td></tr>
-      <tr><td>A machine: menu, recording or front desk</td><td class="n">1,753</td></tr>
-      <tr><td>Dead, wrong person, or the person has left</td><td class="n">141</td></tr>
-      <tr><td>Not tested yet</td><td class="n">1,482</td></tr>
-    </tbody>
-  </table>
-  <p>Accuracy, checked by hand on random samples: "menu or recording" right in 97 of 100, "voicemail" right in 49 of 50. Over the month, 8% of calls went to a number the notebook already knew was a machine.</p>
-
-  <h3>What the notebook says to do with each contact</h3>
+  <h3>What to do with each contact</h3>
   <table class="tbl">
     <thead><tr><th>Action</th><th class="n">Contacts</th></tr></thead>
     <tbody>
-      <tr><td>Nothing, the number is fine</td><td class="n">215</td></tr>
-      <tr class="em"><td>Put first the number that already worked</td><td class="n">65</td></tr>
-      <tr><td>Try another number already on the card</td><td class="n">47</td></tr>
-      <tr><td>Needs a new number: nothing on the card reaches a person</td><td class="n">566</td></tr>
+      <tr><td>Nothing, the number is fine</td><td class="n">219</td></tr>
+      <tr><td>Put first the number that already worked (fix 2)</td><td class="n">65</td></tr>
+      <tr><td>Try another number already on the card</td><td class="n">48</td></tr>
+      <tr><td>Needs a new number (quarterly refresh)</td><td class="n">573</td></tr>
       <tr><td>Find a different person at the company</td><td class="n">7</td></tr>
       <tr><td>Nick's college list, leave alone (agreed 22 Sep)</td><td class="n">135</td></tr>
-      <tr><td>Not enough calls yet to tell</td><td class="n">1,910</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Fix 1 in detail</h3>
-  <p>Trellus, Phone Number Priority, switch "Corporate - Phone" off for Denise, Jonathan and Winston. Last 30 days for the three: 1,635 calls (36% of their calling), 12 conversations with the contact, 5 of 49 positive outcomes. That is 3 positive outcomes per 1,000 calls on the main line against 15 on every other number. 1,168 of the 1,532 contacts affected have another number on the card.</p>
-
-  <h3>Earlier findings (review of 1–21 Sep, published 22 Sep)</h3>
-  <p>3,087 calls: a person answered 10%; switchboard, menu or dead line 37%; our own dialer hung up 23% before anyone answered. The outcome labels in the CRM are written by the dialer, not by the reps. 29% of numbers marked "Bad / Wrong Number" get called again. On dialer calls Jonathan did not speak in 87 of 92 answered calls, checked against the recordings. Credits test: 297 switchboard contacts, 55% already had a direct or mobile number in Apollo; 520 credits bought numbers for 67 more; 194 of 297 now have a better number.</p>
-
-  <h3>Tasks from the 22 Sep meeting</h3>
-  <table class="tbl">
-    <thead><tr><th>Task</th><th>Where it stands</th></tr></thead>
-    <tbody>
-      <tr><td>Find the setting that stops calls to switchboards</td><td><span class="pill done">Found</span> "Corporate Phone" per rep (fix 1); menus can get their own label (fix 4)</td></tr>
-      <tr><td>Protect numbers the reps fixed from being overwritten</td><td><span class="pill done">Cause found</span> two Apollo rules, not the sync; needs the rule owner (fix 3)</td></tr>
-      <tr><td>Refresh numbers once a quarter</td><td><span class="pill wait">List ready</span> 566 contacts need a new number; the notebook keeps the list current</td></tr>
-      <tr><td>Anton goes through the dialer as a rep, start to finish</td><td><span class="pill open">Open</span></td></tr>
-      <tr><td>Second half of the credits test: reps call the 194 new numbers for two weeks</td><td><span class="pill open">Not started</span> needs the reps</td></tr>
+      <tr><td>Not enough calls yet to tell</td><td class="n">1,923</td></tr>
     </tbody>
   </table>
 </details>
 
 <div class="foot">
-  <p>Sources: Trellus call recordings and transcripts, Apollo contact cards and workflow logs, Salesforce phone change history. Read-only. Times are US Eastern.</p>
+  <p>Sources: Trellus call recordings and transcripts, Apollo contact cards and workflow logs, Salesforce phone change history. Read-only: nothing in Apollo, Trellus or Salesforce was changed. Times are US Eastern.</p>
 </div>
 
 </main>
 
-<script>
-  function fillDots(id, on) {
-    const el = document.getElementById(id);
-    for (let i = 0; i < 100; i++) {
-      const d = document.createElement("i");
-      if (i < on) d.className = "on";
-      el.appendChild(d);
-    }
-  }
-  fillDots("dots-direct", 5);
-  fillDots("dots-main", 1);
-</script>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.esm.min.mjs";
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
